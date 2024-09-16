@@ -1,1 +1,18 @@
-server.port=8080
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: git #设置使用本地配置(默认是git,可以设置：subversion(SVN)，native(本地))
+  cloud:
+    config:
+      server:
+        #如下是GIT配置
+        git:
+          # 配置git仓库的地址（最后不需要带/，否则会出现：No custom http config found for URL: XXX）
+          uri: https://github.com/loen123/config-server
+          # git仓库地址下的相对搜索地址（可用使用通配符），可以配置多个，用,分割。可以{application}实现按应用查配置
+          search-paths: configs
+          # git仓库的账号（公开仓库无需账号信息）
+          #git默认分支
+          #default-label: main
+          label: main
